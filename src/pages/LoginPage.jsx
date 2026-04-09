@@ -9,12 +9,12 @@ const LoginPage = () => {
         password: ''
     })
     const [error, setError] = useState('')
-    
-    const navigate = useNavigate()
 
-    const handileClick = () => {
-        navigate('/register')
-    }
+    // const navigate = useNavigate()
+
+    // const handileClick = () => {
+    //     navigate('/register')
+    // }
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -63,7 +63,7 @@ const LoginPage = () => {
             />
           </div>
           <div>
-            <p className="text-blue-500 hover:underline" onClick={handileClick}>Don't have an account? Register</p>
+            {/* <p className="text-blue-500 hover:underline" onClick={handileClick}>Don't have an account? Register</p> */}
           </div>
           <button
             type="submit"

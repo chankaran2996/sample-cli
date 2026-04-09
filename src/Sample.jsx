@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import Sam from './sam'
 
 const Sample = () => {
+  // State to hold the input value
   const [value, setValue] = useState('')
+
+  // console.log(value)
   console.log("Sample component value:", value)
   return (
     <div>

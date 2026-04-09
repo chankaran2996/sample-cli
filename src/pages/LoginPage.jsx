@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
     // const [username, setUsername] = useState('')
@@ -8,6 +9,12 @@ const LoginPage = () => {
         password: ''
     })
     const [error, setError] = useState('')
+    
+    const navigate = useNavigate()
+
+    const handileClick = () => {
+        navigate('/register')
+    }
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -54,6 +61,9 @@ const LoginPage = () => {
                 value={loginData.password}
                 onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
             />
+          </div>
+          <div>
+            <p className="text-blue-500 hover:underline" onClick={handileClick}>Don't have an account? Register</p>
           </div>
           <button
             type="submit"

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const RegisterPage = () => {
     const [name , setName] = useState('')
@@ -9,6 +10,10 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(!name || !email || !password || !confirmPassword){
+            setError('All fields are required')
+            return
+        }
         if(password !== confirmPassword){
             setError('Passwords do not match')
             return
@@ -27,17 +32,14 @@ const RegisterPage = () => {
                 <input 
                     type="text" 
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required 
-                />
+                    onChange={(e) => setName(e.target.value)}                />
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <input 
                     type="email" 
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required 
+                    onChange={(e) => setEmail(e.target.value)} 
                 />
             </div>
             <div>
@@ -45,8 +47,7 @@ const RegisterPage = () => {
                 <input 
                     type="password" 
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required 
+                    onChange={(e) => setPassword(e.target.value)} 
                 />
             </div>
             <div>
@@ -54,9 +55,11 @@ const RegisterPage = () => {
                 <input 
                     type="password" 
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required 
+                    onChange={(e) => setConfirmPassword(e.target.value)} 
                 />
+            </div>
+            <div>
+                <p><Link to="/login" className="text-blue-500 hover:underline">Already have an account? Login</Link></p>
             </div>
             <button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Register</button>
         </form>

@@ -16,15 +16,16 @@ function App() {
     <Example name="Example 2"/>
     <Example name="Example 3"/> */}
     {/* <Sample /> */}
-    <LoginPage />
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/sample" element={<Sample />} />
-          <Route path="*" element={<PageNotFount />} />
-        </Routes>
-      </BrowserRouter> */}
+    {/* <LoginPage />
+    <RegisterPage /> */}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<PageNotFount />} />
+      </Routes>
+    </BrowserRouter>
+      
     </>
   )
 }

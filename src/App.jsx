@@ -4,6 +4,8 @@ import RegisterPage from "./pages/RegisterPage"
 import Sample from "./sample"
 import PageNotFount from "./pages/PageNotFount"
 import Example from "./Example"
+import { CartProvider } from "./CartContext"
+import Counter from "./Counter"
 
 
 function App() {
@@ -18,13 +20,16 @@ function App() {
     {/* <Sample /> */}
     {/* <LoginPage />
     <RegisterPage /> */}
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="*" element={<PageNotFount />} />
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/count" element={<Counter />} />
+          <Route path="*" element={<PageNotFount />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
       
     </>
   )

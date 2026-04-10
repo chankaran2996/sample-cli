@@ -20,17 +20,16 @@ function App() {
     {/* <Sample /> */}
     {/* <LoginPage />
     <RegisterPage /> */}
-    <CartProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/count" element={<Counter />} />
-          <Route path="*" element={<PageNotFount />} />
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
-      
+    <BrowserRouter>
+      <CartProvider>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/count" element={<Counter />} />
+            <Route path="*" element={<PageNotFount />} />
+          </Routes> 
+      </CartProvider>
+    </BrowserRouter> 
     </>
   )
 }

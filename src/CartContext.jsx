@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 export const CartContext = createContext();
 
-const navigate = useNavigate();
+
 
 export const CartProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const navigate = useNavigate();
 
   const [user, setUser ] = useState({
     userName: "",

@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { CartContext } from '../CartContext';
 
 const LoginPage = () => {
     // const [username, setUsername] = useState('')
     // const [password, setPassword] = useState('')
-    const [loginData, setLoginData] = useState({
-        username: '',
-        password: ''
-    })
+    // const [loginData, setLoginData] = useState({
+    //     username: '',
+    //     password: ''
+    // })
     const [error, setError] = useState('')
+
+    const { loginUser, user, setUser } = useContext(CartContext);
 
     const navigate = useNavigate()
 
@@ -18,6 +21,12 @@ const LoginPage = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
+          if(!user.email || !user.password){
+            setError('All fields are required')
+            return
+        }
+
+        loginUser();
         // const responce = await fetch('http://localhost:5000/api/login', {
         //     method: 'POST',
         //     headers: {
@@ -27,16 +36,16 @@ const LoginPage = () => {
         // })
 
 
-        if (responce.status === 200) {
-            alert('Login successful!')
-            setError('')
-            setLoginData({
-                username: '',
-                password: ''
-            })
-        } else {
-            setError('Invalid username or password')
-        }
+        // if (responce.status === 200) {
+        //     alert('Login successful!')
+        //     setError('')
+        //     setLoginData({
+        //         username: '',
+        //         password: ''
+        //     })
+        // } else {
+        //     setError('Invalid username or password')
+        // }
     }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -49,8 +58,8 @@ const LoginPage = () => {
             <input
               type="text"
               className="w-full px-3 py-2 mt-1 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                value={loginData.username}
-                onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </div>
           <div>
@@ -58,8 +67,8 @@ const LoginPage = () => {
             <input
               type="password"
               className="w-full px-3 py-2 mt-1 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                value={loginData.password}
-                onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
           </div>
           <div>

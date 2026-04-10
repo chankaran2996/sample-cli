@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../CartContext';
 
 const RegisterPage = () => {
-    const [name , setName] = useState('')
-    const [email , setEmail] = useState('')
-    const [password , setPassword] = useState('')
-    const [confirmPassword , setConfirmPassword] = useState('')
+    // const [name , setName] = useState('')
+    // const [email , setEmail] = useState('')
+    // const [password , setPassword] = useState('')
+    // const [confirmPassword , setConfirmPassword] = useState('')
     const [error , setError] = useState('')
+
+    const { registerUser , user , setUser } = useContext(CartContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(!name || !email || !password || !confirmPassword){
+        if(!user.userName || !user.email || !user.password || !user.confirmPassword){
             setError('All fields are required')
             return
         }
-        if(password !== confirmPassword){
+        if(user.password !== user.confirmPassword){
             setError('Passwords do not match')
             return
         }
+        registerUser()
         // Here you would typically send the registration data to your backend API
     }
 
@@ -31,31 +35,31 @@ const RegisterPage = () => {
                     <label className="block text-sm font-medium text-gray-700">Name</label>
                 <input 
                     type="text" 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}                />
+                    value={user.userName}
+                    onChange={(e) => setUser({ ...user, userName: e.target.value })}                />
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <input 
                     type="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)} 
+                    value={user.email}
+                    onChange={(e) => setUser({ ...user, email: e.target.value })} 
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Password</label>
                 <input 
                     type="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} 
+                    value={user.password}
+                    onChange={(e) => setUser({ ...user, password: e.target.value })} 
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
                 <input 
                     type="password" 
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)} 
+                    value={user.confirmPassword}
+                    onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })} 
                 />
             </div>
             <div>
